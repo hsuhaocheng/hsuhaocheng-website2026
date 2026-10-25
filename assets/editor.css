@@ -1,0 +1,520 @@
+/* Weebly-Style Interactive Visual Editor UI */
+body.weebly-edit-mode {
+  padding-top: 56px !important;
+}
+
+body.weebly-edit-mode .site-header {
+  top: 56px !important;
+}
+
+/* Top Editor Bar */
+#wb-editor-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #1e2229;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+  font-size: 13.5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  user-select: none;
+}
+
+.wb-bar-left, .wb-bar-center, .wb-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wb-brand {
+  font-weight: 700;
+  font-size: 14px;
+  color: #61dafb;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wb-btn {
+  background: #2f3542;
+  color: #f1f2f6;
+  border: 1px solid #454d5e;
+  border-radius: 5px;
+  padding: 6px 11px;
+  font-size: 12.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.wb-btn:hover {
+  background: #3d4454;
+  border-color: #6c7589;
+}
+
+.wb-btn.primary {
+  background: #2563eb;
+  border-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+}
+
+.wb-btn.primary:hover {
+  background: #1d4ed8;
+}
+
+.wb-btn.success {
+  background: #10b981;
+  border-color: #059669;
+  color: #fff;
+  font-weight: 600;
+}
+
+.wb-btn.success:hover {
+  background: #059669;
+}
+
+.wb-btn.danger {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #fff;
+}
+
+.wb-status {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-left: 6px;
+}
+
+/* Editable Element Outlines & Toolbars */
+body.weebly-edit-mode .section-block,
+body.weebly-edit-mode .year-divider,
+body.weebly-edit-mode .page-title,
+body.weebly-edit-mode .projects-grid,
+body.weebly-edit-mode .about-layout {
+  position: relative;
+  border: 1.5px dashed transparent;
+  border-radius: 6px;
+  padding: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+body.weebly-edit-mode .section-block:hover,
+body.weebly-edit-mode .year-divider:hover,
+body.weebly-edit-mode .page-title:hover,
+body.weebly-edit-mode .projects-grid:hover,
+body.weebly-edit-mode .about-layout:hover {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.02);
+}
+
+/* Columns in Edit Mode */
+body.weebly-edit-mode .cols-row > .col {
+  position: relative;
+  border: 1px dashed rgba(148, 163, 184, 0.45);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+body.weebly-edit-mode .cols-row > .col:hover {
+  border-color: #60a5fa;
+}
+
+/* Floating Block Toolbar */
+.wb-block-toolbar {
+  display: none;
+  position: absolute;
+  top: -14px;
+  right: 10px;
+  background: #1e293b;
+  color: #fff;
+  border-radius: 6px;
+  padding: 3px 6px;
+  gap: 4px;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 500;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  flex-wrap: wrap;
+}
+
+body.weebly-edit-mode *:hover > .wb-block-toolbar {
+  display: inline-flex;
+}
+
+.wb-block-toolbar button,
+.wb-block-toolbar select {
+  background: transparent;
+  color: #f8fafc;
+  border: none;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.wb-block-toolbar select {
+  background: #334155;
+  border: 1px solid #475569;
+}
+
+.wb-block-toolbar button:hover {
+  background: #334155;
+}
+
+.wb-block-toolbar button.wb-del-btn:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+.wb-toolbar-sep {
+  width: 1px;
+  height: 14px;
+  background: #475569;
+  margin: 0 2px;
+}
+
+/* Gallery & Single Image Item Controls */
+body.weebly-edit-mode .gallery-item,
+body.weebly-edit-mode .project-card,
+body.weebly-edit-mode .single-image,
+body.weebly-edit-mode .home-social-row,
+body.weebly-edit-mode .home-social-icon {
+  position: relative;
+}
+
+body.weebly-edit-mode .single-image:hover {
+  outline: 1.5px dashed #3b82f6;
+  outline-offset: 2px;
+}
+
+.wb-item-overlay {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 5px;
+  padding: 3px 5px;
+  gap: 3px;
+  z-index: 400;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+body.weebly-edit-mode .gallery-item:hover > .wb-item-overlay,
+body.weebly-edit-mode .project-card:hover > .wb-item-overlay,
+body.weebly-edit-mode .single-image:hover > .wb-item-overlay,
+body.weebly-edit-mode .cols-row > .col:hover > .wb-item-overlay {
+  display: flex;
+}
+
+.wb-item-overlay button {
+  background: transparent;
+  color: #fff;
+  border: none;
+  padding: 3px 6px;
+  font-size: 11.5px;
+  cursor: pointer;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.wb-item-overlay button:hover {
+  background: #3b82f6;
+}
+
+.wb-item-overlay button.wb-del-btn:hover {
+  background: #ef4444;
+}
+
+/* Drag-to-resize handle on Single Images */
+.wb-resize-handle {
+  display: none;
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 18px;
+  height: 18px;
+  background: #2563eb;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  cursor: nwse-resize;
+  z-index: 450;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  user-select: none;
+}
+
+body.weebly-edit-mode .single-image:hover > .wb-resize-handle {
+  display: block;
+}
+
+/* Social Row & Individual Social Icon Controls */
+body.weebly-edit-mode .home-social-row {
+  padding: 6px 8px;
+  border: 1px dashed transparent;
+  border-radius: 6px;
+  min-height: 32px;
+}
+
+body.weebly-edit-mode .home-social-row:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.wb-social-row-bar {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  background: #1e293b;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 11.5px;
+  margin-left: 12px;
+}
+
+body.weebly-edit-mode .home-social-row:hover .wb-social-row-bar {
+  display: inline-flex;
+}
+
+.wb-social-row-bar button {
+  background: #334155;
+  color: #fff;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.wb-social-row-bar button:hover {
+  background: #3b82f6;
+}
+
+.wb-social-icon-del {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  line-height: 15px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  z-index: 460;
+  padding: 0;
+}
+
+body.weebly-edit-mode .home-social-icon:hover .wb-social-icon-del {
+  display: block;
+}
+
+/* Inline Editable Text */
+body.weebly-edit-mode [contenteditable="true"] {
+  outline: none;
+  cursor: text;
+  border-radius: 3px;
+  transition: box-shadow 0.15s, background 0.15s;
+}
+
+body.weebly-edit-mode [contenteditable="true"]:hover {
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4);
+}
+
+body.weebly-edit-mode [contenteditable="true"]:focus {
+  box-shadow: 0 0 0 2px #3b82f6;
+  background: rgba(59, 130, 246, 0.04);
+}
+
+/* Side Panels & Modals (Pages Manager, Add Block, Media Library) */
+.wb-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+}
+
+.wb-modal-backdrop.open {
+  display: flex;
+}
+
+.wb-modal {
+  background: #fff;
+  color: #1e293b;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 840px;
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.wb-modal-header {
+  padding: 16px 22px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.wb-modal-body {
+  padding: 20px 22px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.wb-modal-footer {
+  padding: 14px 22px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  background: #f8fafc;
+}
+
+/* Pages Manager List */
+.wb-page-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #f8fafc;
+}
+
+.wb-page-row.sub-page {
+  margin-left: 32px;
+  background: #fff;
+}
+
+.wb-page-row input[type="text"] {
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 13.5px;
+  flex: 1;
+}
+
+.wb-page-row .wb-page-file {
+  font-size: 12px;
+  color: #64748b;
+  min-width: 170px;
+}
+
+/* Upload Zone inside Media Modal */
+.wb-upload-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #eff6ff;
+  border: 1.5px dashed #60a5fa;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+
+/* Media Picker Grid */
+.wb-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.wb-media-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.wb-media-card:hover,
+.wb-media-card.selected {
+  border-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.wb-media-card img {
+  width: 100%;
+  height: 95px;
+  object-fit: cover;
+  display: block;
+}
+
+.wb-media-card span {
+  font-size: 11px;
+  padding: 4px 6px;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add Element Bar between sections */
+.wb-add-section-zone {
+  display: none;
+  margin: 18px 0;
+  text-align: center;
+}
+
+body.weebly-edit-mode .wb-add-section-zone {
+  display: block;
+}
+
+.wb-add-section-btn {
+  background: #f1f5f9;
+  border: 1.5px dashed #94a3b8;
+  color: #334155;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.wb-add-section-btn:hover {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
